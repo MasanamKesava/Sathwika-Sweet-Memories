@@ -35,7 +35,7 @@ const diaryEntries = [
     date: "Feb 19, 2026 · 4:20 PM",
     emoji: "💫",
     title: "Cute & Hot",
-    content: `"If u don't mind... Actually ur cute and hot." He meant every word. A CSE graduate who's also gorgeous AND pursuing psychology? You're basically a dream 💕`,
+    content: `"If u don't mind... Actually ur cute and hot." He meant every word. A BSE graduate who's also gorgeous AND pursuing psychology? You're basically a dream 💕`,
     color: "hsl(var(--primary))",
   },
   {
