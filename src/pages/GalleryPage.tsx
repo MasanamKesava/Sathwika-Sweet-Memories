@@ -2,201 +2,126 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-/* Cloudinary Image URL */
-const CLOUDINARY_BASE =
-  "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622362/photo20_n7fz0i.webp";
-
-/* Gallery Images (Using Cloudinary Hosted Images) */
+/* Cloudinary Hosted Images */
 const GALLERY_IMAGES: { src: string; caption: string }[] = [
-  { src: CLOUDINARY_BASE, caption: "Memory 1 💕" },
-  { src: CLOUDINARY_BASE, caption: "Memory 2 🌸" },
-  { src: CLOUDINARY_BASE, caption: "Memory 3 ✨" },
-  { src: CLOUDINARY_BASE, caption: "Memory 4 🦋" },
-  { src: CLOUDINARY_BASE, caption: "Memory 5 💖" },
-  { src: CLOUDINARY_BASE, caption: "Memory 6 🌷" },
-  { src: CLOUDINARY_BASE, caption: "Memory 7 💝" },
-  { src: CLOUDINARY_BASE, caption: "Memory 8 🌺" },
-  { src: CLOUDINARY_BASE, caption: "Memory 9 💫" },
-  { src: CLOUDINARY_BASE, caption: "Memory 10 🌸" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622338/photo1_fu8a0e.jpg", caption: "Memory 1 💕" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622339/photo2_jzjet9.webp", caption: "Memory 2 🌸" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622339/photo3_haa3x2.webp", caption: "Memory 3 ✨" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622339/photo4_b17i1d.webp", caption: "Memory 4 🦋" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622343/photo5_axgnjf.webp", caption: "Memory 5 💖" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622343/photo6_m4gywq.webp", caption: "Memory 6 🌷" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622344/photo7_c2hags.webp", caption: "Memory 7 💝" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622344/photo8_fyjl1k.webp", caption: "Memory 8 🌺" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622344/photo9_nznju2.webp", caption: "Memory 9 💫" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622344/photo10_mvg84g.webp", caption: "Memory 10 💕" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622344/photo11_ona3sz.webp", caption: "Memory 11 🌸" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622348/photo12_untg4q.webp", caption: "Memory 12 ✨" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622355/photo13_oeprnl.webp", caption: "Memory 13 🦋" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622355/photo14_ug37rj.webp", caption: "Memory 14 💖" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622355/photo15_wgskig.webp", caption: "Memory 15 🌷" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622356/photo16_mae886.webp", caption: "Memory 16 💝" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622356/photo17_s2w0ya.webp", caption: "Memory 17 🌺" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622356/photo18_kv7g5f.webp", caption: "Memory 18 💫" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622363/photo19_a6zrwu.webp", caption: "Memory 19 💕" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622362/photo20_n7fz0i.webp", caption: "Memory 20 🌸" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622362/photo21_t9rgfo.webp", caption: "Memory 21 ✨" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622363/photo22_kmsuki.webp", caption: "Memory 22 🦋" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622364/photo23_bwac13.webp", caption: "Memory 23 💖" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622370/photo24_cud6qx.webp", caption: "Memory 24 🌷" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622371/photo25_q4glxa.webp", caption: "Memory 25 💝" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622371/photo26_td0bkm.webp", caption: "Memory 26 🌺" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622372/photo27_fegzeo.webp", caption: "Memory 27 💫" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622373/photo28_pacenz.jpg", caption: "Memory 28 💕" },
+  { src: "https://res.cloudinary.com/dswrgvg3c/image/upload/v1771622377/photo28_ztq0zf.webp", caption: "Memory 29 🌸" },
 ];
 
 export const GalleryPage = () => {
   const [selected, setSelected] = useState<number | null>(null);
-
-  const images = GALLERY_IMAGES;
-  const isEmpty = images.length === 0;
 
   const prev = () =>
     setSelected((s) => (s !== null ? Math.max(0, s - 1) : null));
 
   const next = () =>
     setSelected((s) =>
-      s !== null ? Math.min(images.length - 1, s + 1) : null
+      s !== null ? Math.min(GALLERY_IMAGES.length - 1, s + 1) : null
     );
 
   return (
     <div className="pt-24 pb-20 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-12"
-      >
-        <p
-          className="font-dancing text-xl"
-          style={{ color: "hsl(var(--primary))" }}
-        >
-          Our Precious
-        </p>
-
-        <h1
-          className="text-4xl md:text-6xl font-playfair font-bold mt-2"
-          style={{
-            backgroundImage: "var(--gradient-primary)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          Memories Gallery 🖼️
-        </h1>
-
-        <p className="mt-3 text-muted-foreground font-dancing text-lg">
-          Every picture tells our story 💕
-        </p>
-      </motion.div>
-
-      {/* Empty State */}
-      {isEmpty && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center py-20"
-        >
-          <div className="glass-card rounded-3xl p-8 max-w-md mx-auto">
-            <div className="text-5xl mb-4">🌸</div>
-            <p
-              className="font-playfair text-xl font-semibold"
-              style={{ color: "hsl(var(--primary))" }}
-            >
-              Photos coming soon...
-            </p>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Gallery Grid */}
-      {!isEmpty && (
-        <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {images.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05 }}
-              className="gallery-item aspect-square rounded-2xl overflow-hidden cursor-pointer relative group"
-              style={{ boxShadow: "var(--shadow-soft)" }}
-              onClick={() => setSelected(i)}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={img.src}
-                alt={img.caption}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2"
-                style={{
-                  background:
-                    "linear-gradient(to top, hsl(340 50% 20% / 0.7), transparent)",
-                }}
-              >
-                <p className="text-white text-xs font-dancing truncate">
-                  {img.caption}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selected !== null && images[selected] && (
+      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {GALLERY_IMAGES.map((img, i) => (
           <motion.div
+            key={i}
+            whileHover={{ scale: 1.05 }}
+            className="aspect-square rounded-2xl overflow-hidden cursor-pointer"
+            onClick={() => setSelected(i)}
+          >
+            <img
+              src={img.src}
+              alt={img.caption}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      <AnimatePresence>
+        {selected !== null && (
+          <motion.div
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{
-              background: "hsl(340 30% 5% / 0.92)",
-              backdropFilter: "blur(12px)",
-            }}
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-3xl w-full"
+              className="relative max-w-4xl w-full px-4"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={images[selected].src}
-                alt={images[selected].caption}
-                className="w-full max-h-[75vh] object-contain rounded-3xl"
-                style={{ boxShadow: "var(--shadow-glow)" }}
+                src={GALLERY_IMAGES[selected].src}
+                alt={GALLERY_IMAGES[selected].caption}
+                className="w-full max-h-[80vh] object-contain rounded-2xl"
               />
-
-              <p
-                className="text-center mt-4 font-dancing text-xl text-white"
-                style={{
-                  textShadow: "0 0 20px hsl(340 75% 65% / 0.6)",
-                }}
-              >
-                {images[selected].caption}
+              <p className="text-center text-white mt-4 text-lg">
+                {GALLERY_IMAGES[selected].caption}
               </p>
             </motion.div>
 
-            {/* Close Button */}
-            <button
-              className="absolute top-4 right-4 text-white p-2 glass-card rounded-full hover:scale-110 transition-transform"
-              onClick={() => setSelected(null)}
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Previous */}
             {selected > 0 && (
               <button
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 glass-card rounded-full hover:scale-110 transition-transform"
+                className="absolute left-6 text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   prev();
                 }}
               >
-                <ChevronLeft />
+                <ChevronLeft size={40} />
               </button>
             )}
 
-            {/* Next */}
-            {selected < images.length - 1 && (
+            {selected < GALLERY_IMAGES.length - 1 && (
               <button
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 glass-card rounded-full hover:scale-110 transition-transform"
+                className="absolute right-6 text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   next();
                 }}
               >
-                <ChevronRight />
+                <ChevronRight size={40} />
               </button>
             )}
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 font-dancing text-white/70 text-sm">
-              {selected + 1} / {images.length}
-            </div>
+            <button
+              className="absolute top-6 right-6 text-white"
+              onClick={() => setSelected(null)}
+            >
+              <X size={32} />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
