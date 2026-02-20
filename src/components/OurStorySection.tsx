@@ -14,7 +14,7 @@ const timelineItems: TimelineItem[] = [
   { icon: "⏰", label: "The Moment", value: "3:12 PM", color: "hsl(var(--lavender))" },
   { icon: "💬", label: "How We Met", value: "You were on an application platform — Kesava spotted you and couldn't help but say Hi 😊", color: "hsl(var(--primary))" },
   { icon: "✨", label: "First Impression", value: "\"Actually you're so cute in the photo\" — his very first compliment 💕", color: "hsl(var(--lavender))" },
-  { icon: "🎓", label: "Your World", value: "Fresh CSE graduate from SRM University, ready to conquer the world 💪", color: "hsl(var(--primary))" },
+  { icon: "🎓", label: "Your World", value: "Fresh BSE graduate from SRM University, ready to conquer the world 💪", color: "hsl(var(--primary))" },
   { icon: "🌸", label: "Where We Are", value: "Just the beginning of something beautiful...", color: "hsl(var(--lavender))" },
 ];
 
