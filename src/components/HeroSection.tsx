@@ -32,6 +32,8 @@ const categorizedQuotes = {
     "Intha podhhunne lechinav endhi 🌅",
     "🥹🥹🥹 so soothing to hear abboooooo",
     "Future Dr. Sathwika ki preparation phase anukundam 😜",
+    "Abbo chala mandhey le but mostly",
+    "cause you're damn gorgeous man...",
   ],
   teasing: [
     "Nee emojis ardam cheskovadam rombha kastam guru 😅",
@@ -39,14 +41,19 @@ const categorizedQuotes = {
     "Butterfly next ekkadi egoripotundi mari...? 🦋",
     "Nuv ala walking chestu vunte akkada couples ki godava aidi emo 😄",
     "Ardam kanattu act chedham 🤣",
+    "Areyyyyyy nen charge petti padkunna 8 paina cheyna? Bayataki velthuna!",
     "Noice ra telidhu nen epud instant ga plan eskoni ekkestha 🤣",
     "Antha ledh le nuv musko 😌",
+    "Nuv ante thop le ra",
   ],
   emotional: [
     "But manku antu oka emotion supplier kavalali 😌",
     "Again hard to say bye andi... 😏",
     "Life long therapy teeskuntava 😢 anni baadhal em unnai",
     "🥹🥹🥹🥹 tels andi kanpisthundi",
+    "oka vishyam cheppana manam ela vunn sare self love anedi vundli",
+    "Still suffering but aapesna expect chesudu",    
+    "Dhanni set cheskundam ani twaraga padkotam twaraga levatam",
   ],
   philosophical: [
     "Oka person gurinchi poorthiga telusukovalante journey is the best option i think so...",
@@ -54,6 +61,7 @@ const categorizedQuotes = {
     "By birth de Brahma Devudu tho kadupulo vunnapude coaching teeskunna 😁😅",
     "Manchi kattubatlu 👀",
     "Who knows 😉",
+    "Malla ma kukkalki food petti adantha clean cheskovali",
   ],
 };
 
