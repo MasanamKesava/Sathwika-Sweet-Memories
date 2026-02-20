@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap');
+
+/* ========================
+   SATHWIKA SWEET DREAMS
+   Romantic Design System
+   ======================== */
+
+@layer base {
+  :root {
+    /* Core romantic palette */
+    --background: 340 30% 98%;
+    --foreground: 340 25% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 340 25% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 25% 20%;
+
+    /* Rose pink primary */
+    --primary: 340 75% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Lavender secondary */
+    --secondary: 270 45% 88%;
+    --secondary-foreground: 270 40% 30%;
+
+    /* Soft muted */
+    --muted: 340 20% 94%;
+    --muted-foreground: 340 15% 55%;
+
+    /* Blush accent */
+    --accent: 350 80% 90%;
+    --accent-foreground: 340 60% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 30% 88%;
+    --input: 340 25% 92%;
+    --ring: 340 75% 65%;
+
+    --radius: 1rem;
+
+    /* Custom romantic tokens */
+    --rose: 340 75% 65%;
+    --rose-light: 350 80% 90%;
+    --rose-dark: 340 60% 45%;
+    --lavender: 270 45% 80%;
+    --lavender-light: 270 50% 93%;
+    --blush: 350 70% 92%;
+    --petal: 15 80% 90%;
+    --gold: 40 85% 70%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(340, 50%, 96%) 0%, hsl(270, 40%, 94%) 50%, hsl(350, 60%, 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(340, 30%, 98%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(340, 75%, 65%) 0%, hsl(310, 60%, 65%) 100%);
+    --gradient-lavender: linear-gradient(135deg, hsl(270, 45%, 80%) 0%, hsl(290, 50%, 75%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(340 50% 70% / 0.15);
+    --shadow-card: 0 8px 32px hsl(340 50% 60% / 0.12);
+    --shadow-glow: 0 0 30px hsl(340 75% 65% / 0.3);
+    --shadow-hover: 0 12px 40px hsl(340 50% 60% / 0.2);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-dancing {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(340 50% 85% / 0.4);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Romantic glow button */
+  .btn-romantic {
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-romantic:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Floating heart keyframes */
+  @keyframes float-up {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.8; }
+    50% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) rotate(20deg) scale(0.5); opacity: 0; }
+  }
+
+  @keyframes float-sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(340 75% 65% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(340 75% 65% / 0.6); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+
+  @keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+  }
+
+  .animate-float-up {
+    animation: float-up linear infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-heart-beat {
+    animation: heart-beat 1.5s ease-in-out infinite;
+  }
+
+  .animate-wave {
+    animation: wave 0.8s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent 0%, hsl(340 75% 65% / 0.15) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Timeline styles */
+  .timeline-line {
+    background: var(--gradient-primary);
+  }
+
+  /* Gallery hover effects */
+  .gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Sound wave bars */
+  .sound-bar {
+    animation: wave 0.8s ease-in-out infinite;
+  }
+
+  .sound-bar:nth-child(2) { animation-delay: 0.1s; }
+  .sound-bar:nth-child(3) { animation-delay: 0.2s; }
+  .sound-bar:nth-child(4) { animation-delay: 0.3s; }
+  .sound-bar:nth-child(5) { animation-delay: 0.4s; }
+  .sound-bar:nth-child(6) { animation-delay: 0.5s; }
+  .sound-bar:nth-child(7) { animation-delay: 0.15s; }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 9999px;
+  }
+}
+/* Romantic Animations */
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: slowSpin 6s linear infinite;
+}
+
+@keyframes soundWave {
+  0% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0.3); }
+}
+.sound-bar {
+  animation: soundWave 1s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 15px rgba(255,105,180,0.4); }
+  50% { box-shadow: 0 0 50px rgba(255,105,180,0.9); }
+  100% { box-shadow: 0 0 15px rgba(255,105,180,0.4); }
+}
+.romantic-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120px); opacity: 0; }
+}
+.floating-heart {
+  position: absolute;
+  font-size: 22px;
+  pointer-events: none;
+  animation: floatUp 2s ease-in-out forwards;
+}
