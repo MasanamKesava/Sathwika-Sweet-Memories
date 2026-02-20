@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { LoveCounter } from "./LoveCounter";
 import { LiveClock } from "./LiveClock";
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+
+/* ---------------- Animation Variants ---------------- */
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -22,51 +23,114 @@ const itemVariants: Variants = {
   },
 };
 
-const flirtyLines = [
-  "\"Actually you're so cute in the photo\" 💕",
-  "\"Cute and hot\" — his exact words 🥰",
-  "\"Sathwika ane peru naku baga nachidi\" ✨",
-  "\"Ninnu chusaka 🤯\" — because how could he not 😄",
-  "But manku antu oka emotion supplier kavalali 😌",
-  "Nee emojis ardam cheskovadam rombha kastam guru 😅",
-  "Mana meet 8 ki kada? ⏰",
-  "Butterfly next ekkadi egoripotundi mari...? 🦋",
-  "Who knows 😉",
-  "Lechaka cheyamanna kada Dr. Marchipoyava? 😄",
-  "Again hard to say bye andi... 😏",
-  "🥹🥹🥹🥹 tels andi kanpisthundi",
-  "Have a great day andi 🌸",
-  "Achaa noice ra 😎",
-  "Oka person gurinchi poorthiga telusukovalante journey is the best option i think so...",
-  "Noice ra telidhu nen epud instant ga plan eskoni ekkestha 🤣",
-  "Nuv ala walking chestu vunte akkada couples ki godava aidi emo 😄",
-  "Antha ledh le nuv musko 😌",
-  "By birth de Brahma Devudu tho kadupulo vunnapude coaching teeskunna 😁😅",
-  "Manchi kattubatlu 👀",
-  "Ardam kanattu act chedham 🤣",
-  "Life long therapy teeskuntava 😢 anni baadhal em unnai",
-  "Oka goppa manishi apply chesi pettadu ✨",
-  "🥹🥹🥹 so soothing to hear abboooooo",
-  "Future Dr. Sathwika ki preparation phase anukundam 😜",
-  "Intha podhhunne lechinav endhi 🌅",
-];
+/* ---------------- Categorized Quotes ---------------- */
+
+const categorizedQuotes = {
+  cute: [
+    "\"Actually you're so cute in the photo\" 💕",
+    "Have a great day andi 🌸",
+    "Intha podhhunne lechinav endhi 🌅",
+    "🥹🥹🥹 so soothing to hear abboooooo",
+    "Future Dr. Sathwika ki preparation phase anukundam 😜",
+  ],
+  teasing: [
+    "Nee emojis ardam cheskovadam rombha kastam guru 😅",
+    "Mana meet 8 ki kada? ⏰",
+    "Butterfly next ekkadi egoripotundi mari...? 🦋",
+    "Nuv ala walking chestu vunte akkada couples ki godava aidi emo 😄",
+    "Ardam kanattu act chedham 🤣",
+    "Noice ra telidhu nen epud instant ga plan eskoni ekkestha 🤣",
+    "Antha ledh le nuv musko 😌",
+  ],
+  emotional: [
+    "But manku antu oka emotion supplier kavalali 😌",
+    "Again hard to say bye andi... 😏",
+    "Life long therapy teeskuntava 😢 anni baadhal em unnai",
+    "🥹🥹🥹🥹 tels andi kanpisthundi",
+  ],
+  philosophical: [
+    "Oka person gurinchi poorthiga telusukovalante journey is the best option i think so...",
+    "Oka goppa manishi apply chesi pettadu ✨",
+    "By birth de Brahma Devudu tho kadupulo vunnapude coaching teeskunna 😁😅",
+    "Manchi kattubatlu 👀",
+    "Who knows 😉",
+  ],
+};
+
+/* ---------------- Mood Glow Styles ---------------- */
+
+const moodGlow: Record<string, string> = {
+  cute: "shadow-pink-300/50",
+  teasing: "shadow-purple-400/50",
+  emotional: "shadow-blue-400/50",
+  philosophical: "shadow-amber-400/50",
+};
+
+/* ---------------- Typewriter Hook ---------------- */
+
+const useTypewriter = (text: string, speed = 25) => {
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    setDisplayed("");
+    let i = 0;
+
+    const interval = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) clearInterval(interval);
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text, speed]);
+
+  return displayed;
+};
+
+/* ---------------- Component ---------------- */
 
 export const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [quote, setQuote] = useState<{ text: string; mood: string }>({
+    text: "",
+    mood: "cute",
+  });
 
-  // Rotate quotes every 4 seconds
+  /* Smart Randomizer (no immediate repeat) */
+  const getRandomQuote = (previousText: string) => {
+    const moods = Object.keys(categorizedQuotes) as Array<
+      keyof typeof categorizedQuotes
+    >;
+
+    let newQuote = "";
+    let newMood: keyof typeof categorizedQuotes = "cute";
+
+    while (!newQuote || newQuote === previousText) {
+      newMood = moods[Math.floor(Math.random() * moods.length)];
+      const moodQuotes = categorizedQuotes[newMood];
+      newQuote =
+        moodQuotes[Math.floor(Math.random() * moodQuotes.length)];
+    }
+
+    return { text: newQuote, mood: newMood };
+  };
+
   useEffect(() => {
+    const first = getRandomQuote("");
+    setQuote(first);
+
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % flirtyLines.length);
-    }, 4000);
+      setQuote((prev) => getRandomQuote(prev.text));
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const typedText = useTypewriter(quote.text, 20);
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 pb-20 relative">
-      
-      {/* Sparkle Decorations */}
+
+      {/* Sparkles */}
       {["✨", "🌸", "💫", "⭐", "✨"].map((s, i) => (
         <motion.span
           key={i}
@@ -96,69 +160,50 @@ export const HeroSection = () => {
         animate="visible"
         className="max-w-4xl mx-auto"
       >
-        {/* Live Clock */}
+        {/* Clock */}
         <motion.div variants={itemVariants} className="mb-10">
           <LiveClock />
         </motion.div>
 
-        {/* Title Section */}
+        {/* Title */}
         <motion.div variants={itemVariants}>
-          <p
-            className="font-dancing text-xl md:text-2xl mb-3"
-            style={{ color: "hsl(var(--primary))" }}
-          >
+          <p className="font-dancing text-xl md:text-2xl mb-3 text-primary">
             ✨ A Digital Diary of Moments ✨
           </p>
 
-          <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold leading-tight mb-4"
-            style={{
-              backgroundImage: "var(--gradient-primary)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold leading-tight mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
             Sathwika
           </h1>
 
-          <h2
-            className="text-3xl md:text-5xl font-playfair font-bold italic"
-            style={{ color: "hsl(var(--lavender))" }}
-          >
+          <h2 className="text-3xl md:text-5xl font-playfair font-bold italic text-purple-300">
             Special Moments 💕
           </h2>
         </motion.div>
 
-        {/* Subheading */}
-        <motion.p
-          variants={itemVariants}
-          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-dancing"
-        >
-          A digital space of flirting, memories, midnight conversations, and a whole lot of love 💕
-        </motion.p>
-
-        {/* Rotating Flirty Quotes */}
+        {/* Rotating Quote Card */}
         <motion.div
           variants={itemVariants}
-          className="mt-6 glass-card rounded-2xl px-6 py-4 max-w-lg mx-auto min-h-[70px] flex items-center justify-center"
+          className={`mt-8 rounded-2xl px-6 py-6 max-w-lg mx-auto min-h-[100px] 
+          flex items-center justify-center text-center
+          backdrop-blur-md bg-white/10 border border-white/20
+          shadow-xl transition-all duration-500
+          ${moodGlow[quote.mood]}`}
         >
           <AnimatePresence mode="wait">
             <motion.p
-              key={currentIndex}
+              key={quote.text}
               className="font-dancing text-lg italic"
-              style={{ color: "hsl(var(--primary))" }}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.6 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
             >
-              {flirtyLines[currentIndex]}
+              {typedText}
             </motion.p>
           </AnimatePresence>
         </motion.div>
 
-        {/* Heart Animation */}
+        {/* Heart */}
         <motion.div
           variants={itemVariants}
           className="my-10 text-6xl"
@@ -170,16 +215,13 @@ export const HeroSection = () => {
 
         {/* Love Counter */}
         <motion.div variants={itemVariants}>
-          <p
-            className="font-dancing text-2xl mb-6"
-            style={{ color: "hsl(var(--primary))" }}
-          >
+          <p className="font-dancing text-2xl mb-6 text-primary">
             We've been talking for...
           </p>
           <LoveCounter />
         </motion.div>
 
-        {/* Navigation Buttons */}
+        {/* Navigation */}
         <motion.div
           variants={itemVariants}
           className="mt-12 flex flex-wrap gap-3 justify-center"
@@ -203,17 +245,9 @@ export const HeroSection = () => {
         {/* Footer */}
         <motion.div
           variants={itemVariants}
-          className="mt-12 flex flex-col items-center gap-2 text-muted-foreground"
+          className="mt-12 text-muted-foreground text-sm"
         >
-          <p className="font-dancing text-sm">
-            Made with love by Kesava 💕
-          </p>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            💕
-          </motion.div>
+          Made with love by Kesava 💕
         </motion.div>
       </motion.div>
     </section>
