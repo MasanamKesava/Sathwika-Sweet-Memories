@@ -45,6 +45,7 @@ const categorizedQuotes = {
     "Noice ra telidhu nen epud instant ga plan eskoni ekkestha 🤣",
     "Antha ledh le nuv musko 😌",
     "Nuv ante thop le ra",
+    "Em delete chesav ra babu",
   ],
   emotional: [
     "But manku antu oka emotion supplier kavalali 😌",
