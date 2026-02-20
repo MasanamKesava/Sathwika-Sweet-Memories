@@ -1,61 +1,72 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
-// First message: 19 Feb 2026 at 3:12 PM
-const FIRST_MET = new Date("2026-02-19T15:12:00");
-
-interface TimeUnit {
-  value: number;
-  label: string;
-  emoji: string;
-}
+const START_DATE = new Date("2026-02-19T15:12:00");
 
 export const LoveCounter = () => {
-  const [units, setUnits] = useState<TimeUnit[]>([]);
+  const calculateTime = () => {
+    const now = new Date();
+    const difference = now.getTime() - START_DATE.getTime();
+
+    if (difference <= 0) {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      };
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (difference / (1000 * 60 * 60)) % 24
+    );
+    const minutes = Math.floor(
+      (difference / (1000 * 60)) % 60
+    );
+    const seconds = Math.floor(
+      (difference / 1000) % 60
+    );
+
+    return { days, hours, minutes, seconds };
+  };
+
+  const [time, setTime] = useState(calculateTime());
 
   useEffect(() => {
-    const compute = () => {
-      const now = new Date();
-      const diff = Math.max(0, now.getTime() - FIRST_MET.getTime());
-      const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-      setUnits([
-        { value: days, label: "Days", emoji: "🌸" },
-        { value: hours, label: "Hours", emoji: "💕" },
-        { value: minutes, label: "Minutes", emoji: "✨" },
-        { value: seconds, label: "Seconds", emoji: "💖" },
-      ]);
-    };
-    compute();
-    const interval = setInterval(compute, 1000);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setTime(calculateTime());
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="flex flex-wrap gap-4 justify-center">
-      {units.map((u, i) => (
-        <motion.div
-          key={u.label}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: i * 0.1 }}
-          className="glass-card rounded-2xl p-4 md:p-6 text-center min-w-[80px] md:min-w-[100px]"
-        >
-          <div className="text-2xl mb-1">{u.emoji}</div>
-          <div
-            className="text-3xl md:text-4xl font-bold font-playfair"
-            style={{ color: "hsl(var(--primary))" }}
-          >
-            {String(u.value).padStart(2, "0")}
-          </div>
-          <div className="text-xs text-muted-foreground mt-1 font-dancing tracking-wide">
-            {u.label}
-          </div>
-        </motion.div>
-      ))}
+    <div className="flex gap-6 justify-center text-center font-playfair">
+      <TimeBlock value={time.days} label="Days" />
+      <TimeBlock value={time.hours} label="Hours" />
+      <TimeBlock value={time.minutes} label="Minutes" />
+      <TimeBlock value={time.seconds} label="Seconds" />
+    </div>
+  );
+};
+
+/* ---------- Small Reusable Component ---------- */
+
+const TimeBlock = ({
+  value,
+  label,
+}: {
+  value: number;
+  label: string;
+}) => {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+        {value.toString().padStart(2, "0")}
+      </div>
+      <span className="text-sm text-muted-foreground">
+        {label}
+      </span>
     </div>
   );
 };
