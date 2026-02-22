@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PasswordProtect } from "@/components/PasswordProtect";
 import { Navbar } from "@/components/Navbar";
 import { FloatingHearts } from "@/components/FloatingHearts";
-import { FloatingMusicPlayer } from "@/components/FloatingMusicPlayer";
 import { RomanticFooter } from "@/components/RomanticFooter";
 import Index from "./pages/Index";
 import DiaryPage from "./pages/DiaryPage";
