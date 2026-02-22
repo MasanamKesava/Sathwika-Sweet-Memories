@@ -7,7 +7,7 @@ const loveLetters = [
   {
     id: 1,
     emoji: "💌",
-    title: "To My Dr. Psycho",
+    title: "To Dr. Psycho",
     date: "Feb 19, 2026",
     content: `Dear Sathwika,\n\nFrom the moment I saw your profile, something told me you were special. Your smile, your curly hair, your bright eyes — everything about you screamed "she's the one." I didn't know then that a simple "Hi" would lead to all of this. But here we are.\n\nYou're not just beautiful — you're smart, funny, and incredibly kind. The world doesn't know yet how lucky it is to have a future psychologist like you.\n\nWith all my heart,\nKesava 💕`,
   },
