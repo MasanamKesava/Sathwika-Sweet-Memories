@@ -11,9 +11,11 @@ interface NavbarProps {
 const links = [
   { to: "/", label: "Home", emoji: "🏠" },
   { to: "/diary", label: "Our Diary", emoji: "📖" },
+  { to: "/love-letters", label: "Love Letters", emoji: "💌" },
   { to: "/gallery", label: "Gallery", emoji: "🖼️" },
   { to: "/voices", label: "Sweet Voices", emoji: "🎵" },
   { to: "/health", label: "Take Care", emoji: "💊" },
+  { to: "/wishes", label: "Wishes", emoji: "🌟" },
 ];
 
 export const Navbar = ({ muted, onToggleMute }: NavbarProps) => {
