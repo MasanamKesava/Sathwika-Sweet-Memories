@@ -94,7 +94,7 @@ const AppInner = () => {
           </Routes>
 
           <RomanticFooter />
-          <FloatingMusicPlayer muted={muted} onToggleMute={() => setMuted((m) => !m)} />
+          
         </motion.div>
       )}
     </AnimatePresence>
