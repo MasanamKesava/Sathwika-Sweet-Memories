@@ -8,17 +8,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PasswordProtect } from "@/components/PasswordProtect";
 import { Navbar } from "@/components/Navbar";
 import { FloatingHearts } from "@/components/FloatingHearts";
+import { FloatingMusicPlayer } from "@/components/FloatingMusicPlayer";
 import { RomanticFooter } from "@/components/RomanticFooter";
 import Index from "./pages/Index";
 import DiaryPage from "./pages/DiaryPage";
+import LoveLettersPage from "./pages/LoveLettersPage";
 import { GalleryPage } from "./pages/GalleryPage";
 import VoicesPage from "./pages/VoicesPage";
 import HealthPage from "./pages/HealthPage";
+import WishesPage from "./pages/WishesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Background music — place a file at /public/audio/bg-music.mp3
 const BG_MUSIC_SRC = "/audio/bg-music.mp3";
 
 const AppInner = () => {
@@ -34,10 +36,8 @@ const AppInner = () => {
     audio.volume = 0.25;
     audioRef.current = audio;
 
-    // Try to autoplay
     const tryPlay = () => {
       audio.play().catch(() => {
-        // Autoplay blocked — will play on first user interaction
         const playOnce = () => {
           audio.play().catch(() => {});
           document.removeEventListener("click", playOnce);
@@ -53,7 +53,6 @@ const AppInner = () => {
     };
   }, [unlocked]);
 
-  // Mute/unmute
   useEffect(() => {
     if (!audioRef.current) return;
     if (muted) {
@@ -81,23 +80,22 @@ const AppInner = () => {
           transition={{ duration: 0.8 }}
           className="relative min-h-screen"
         >
-          {/* Floating hearts background */}
           <FloatingHearts density={12} />
-
-          {/* Navigation */}
           <Navbar muted={muted} onToggleMute={() => setMuted((m) => !m)} />
 
-          {/* Pages */}
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/diary" element={<DiaryPage />} />
+            <Route path="/love-letters" element={<LoveLettersPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/voices" element={<VoicesPage />} />
             <Route path="/health" element={<HealthPage />} />
+            <Route path="/wishes" element={<WishesPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
 
           <RomanticFooter />
+          <FloatingMusicPlayer muted={muted} onToggleMute={() => setMuted((m) => !m)} />
         </motion.div>
       )}
     </AnimatePresence>
