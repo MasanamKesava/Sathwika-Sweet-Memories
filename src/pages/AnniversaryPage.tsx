@@ -23,7 +23,7 @@ const categoryMeta: Record<Category, { label: string; emoji: string; color: stri
   game:     { label: "Games 🎮",    emoji: "🎮", color: "hsl(150, 50%, 60%)" },
 };
 
-const allMoments: Moment[] = [
+const moments: Moment[] = [
   // ───────── 19/02/26 ─ First Contact ─────────
   {
     text: "19/02/26 – 3:12 PM 💬 First message: “Hi… Sathwika.” The beginning of everything.",
@@ -318,7 +318,8 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
       </div>
     </motion.div>
   );
-
+};
+const moments_20_02_26: Moment[] = [
 
   // ───────── 20/02/26 – Early Morning Energy ─────────
   {
@@ -472,6 +473,10 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     emoji: "💤",
     category: "romantic",
   },
+];
+
+
+const moments_21_02_26: Moment[] = [
 
   // ───────── 21/02/26 – Early Morning Creativity ─────────
   {
@@ -598,7 +603,9 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     emoji: "🌙",
     category: "emotion",
   },
+];
 
+const moments_22_02_26: Moment[] = [
 
   // ───────── Morning Routine Energy ─────────
   {
@@ -722,7 +729,9 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     emoji: "💫",
     category: "game",
   },
+];
 
+const moments_23_02_26: Moment[] = [
 
   // ───────── Morning Care Tone ─────────
   {
@@ -844,7 +853,9 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     emoji: "🌌",
     category: "emotion",
   },
+];
 
+const moments_24_02_26: Moment[] = [
 
   // ───────── Morning Affection ─────────
   {
@@ -933,7 +944,9 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     category: "romantic",
   },
 
+];
 
+const moments_25_02_26: Moment[] = [
 
   // ───────── Financial Offer Escalation ─────────
   {
@@ -1007,6 +1020,9 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     category: "emotion",
   },
 
+];
+
+const extendedMoments_26_02_26: Moment[] = [
 
   // ───────── Emotional Residue from Past ─────────
   {
@@ -1090,7 +1106,7 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     category: "emotion",
   },
 
-
+];const moments_27_02_26: Moment[] = [
 
   // ───────── Post-Conflict Repair Initiation ─────────
   {
@@ -1125,7 +1141,7 @@ const AnniversaryPage = () => {
     <main className="pt-20 pb-12 min-h-screen">
       <CakeCutHero />
 
-      {/* Our Chatting */}
+      {/* Our Chatting Moments */}
       <section className="px-4 py-12 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
