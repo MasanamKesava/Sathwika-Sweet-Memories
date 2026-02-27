@@ -1131,13 +1131,17 @@ const extendedMoments_26_02_26: Moment[] = [
 /* ── Main Page ── */
 const AnniversaryPage = () => {
   const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
-  const filtered = activeFilter === "all" ? moments : moments.filter(m => m.category === activeFilter);
+
+  const filtered =
+    activeFilter === "all"
+      ? allMoments
+      : allMoments.filter((m) => m.category === activeFilter);
 
   return (
     <main className="pt-20 pb-12 min-h-screen">
       <CakeCutHero />
 
-      {/* Our Chatting Moments */}
+      {/* Our Chatting */}
       <section className="px-4 py-12 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1148,6 +1152,7 @@ const AnniversaryPage = () => {
           <p className="font-dancing text-xl" style={{ color: "hsl(var(--primary))" }}>
             Messages that made us 'us'
           </p>
+
           <h2
             className="text-3xl md:text-4xl font-playfair font-bold mt-2"
             style={{
@@ -1168,21 +1173,36 @@ const AnniversaryPage = () => {
             className="px-4 py-1.5 rounded-full text-sm font-medium transition-all"
             style={
               activeFilter === "all"
-                ? { backgroundImage: "var(--gradient-primary)", color: "white", boxShadow: "var(--shadow-soft)" }
-                : { background: "hsl(var(--muted))", color: "hsl(var(--muted-foreground))" }
+                ? {
+                    backgroundImage: "var(--gradient-primary)",
+                    color: "white",
+                    boxShadow: "var(--shadow-soft)",
+                  }
+                : {
+                    background: "hsl(var(--muted))",
+                    color: "hsl(var(--muted-foreground))",
+                  }
             }
           >
             All ✨
           </button>
-          {(Object.keys(categoryMeta) as Category[]).map(cat => (
+
+          {(Object.keys(categoryMeta) as Category[]).map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
               className="px-4 py-1.5 rounded-full text-sm font-medium transition-all"
               style={
                 activeFilter === cat
-                  ? { background: categoryMeta[cat].color, color: "white", boxShadow: "var(--shadow-soft)" }
-                  : { background: "hsl(var(--muted))", color: "hsl(var(--muted-foreground))" }
+                  ? {
+                      background: categoryMeta[cat].color,
+                      color: "white",
+                      boxShadow: "var(--shadow-soft)",
+                    }
+                  : {
+                      background: "hsl(var(--muted))",
+                      color: "hsl(var(--muted-foreground))",
+                    }
               }
             >
               {categoryMeta[cat].label}
@@ -1193,18 +1213,17 @@ const AnniversaryPage = () => {
         {/* Moment cards grid */}
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((moment, i) => (
-            <MomentCard key={moment.text} moment={moment} index={i} />
+            <MomentCard key={moment.text + i} moment={moment} index={i} />
           ))}
         </motion.div>
 
-        {/* Placeholder note */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center text-muted-foreground font-dancing text-lg mt-10"
         >
-          More moments coming soon... this is just the beginning of our story 💫
+          Every date from 19th to 27th is now included 💫
         </motion.p>
       </section>
     </main>
