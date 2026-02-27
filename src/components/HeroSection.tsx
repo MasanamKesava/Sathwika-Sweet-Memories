@@ -236,10 +236,10 @@ export const HeroSection = () => {
           className="mt-12 flex flex-wrap gap-3 justify-center"
         >
           {[
+            { to: "/anniversary", label: "Week Anniversary 🎂" },
             { to: "/diary", label: "Our Diary 📖" },
             { to: "/gallery", label: "Gallery 🖼️" },
             { to: "/voices", label: "Sweet Voices 🎵" },
-            { to: "/health", label: "Take Care 💊" },
           ].map((btn) => (
             <Link
               key={btn.to}

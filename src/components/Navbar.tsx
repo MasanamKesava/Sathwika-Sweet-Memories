@@ -10,6 +10,7 @@ interface NavbarProps {
 
 const links = [
   { to: "/", label: "Home", emoji: "🏠" },
+  { to: "/anniversary", label: "Week Anniversary", emoji: "🎂" },
   { to: "/diary", label: "Our Diary", emoji: "📖" },
   { to: "/love-letters", label: "Love Letters", emoji: "💌" },
   { to: "/gallery", label: "Gallery", emoji: "🖼️" },

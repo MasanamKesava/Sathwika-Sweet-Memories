@@ -16,6 +16,7 @@ import { GalleryPage } from "./pages/GalleryPage";
 import VoicesPage from "./pages/VoicesPage";
 import HealthPage from "./pages/HealthPage";
 import WishesPage from "./pages/WishesPage";
+import AnniversaryPage from "./pages/AnniversaryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -84,6 +85,7 @@ const AppInner = () => {
 
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/anniversary" element={<AnniversaryPage />} />
             <Route path="/diary" element={<DiaryPage />} />
             <Route path="/love-letters" element={<LoveLettersPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
