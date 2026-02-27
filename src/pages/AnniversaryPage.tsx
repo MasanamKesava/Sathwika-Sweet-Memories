@@ -175,152 +175,7 @@ Like morning light where quiet dreams are sung…”`,
     emoji: "💫",
     category: "funny",
   },
-];
-const CakeCutHero = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 0.8 }}
-      className="relative text-center py-16 px-4 overflow-hidden"
-    >
-      {/* Floating confetti */}
-      {[...Array(18)].map((_, i) => (
-        <motion.span
-          key={i}
-          className="absolute text-xl pointer-events-none select-none"
-          initial={{ opacity: 0, y: -20 }}
-          animate={inView ? {
-            opacity: [0, 1, 0],
-            y: [-(Math.random() * 60), 200 + Math.random() * 300],
-            x: [0, (Math.random() - 0.5) * 120],
-            rotate: [0, Math.random() * 360],
-          } : {}}
-          transition={{ duration: 3 + Math.random() * 2, delay: i * 0.15, repeat: Infinity, repeatDelay: 4 }}
-          style={{ left: `${5 + Math.random() * 90}%`, top: `${Math.random() * 30}%` }}
-        >
-          {["🎉", "🎊", "✨", "💖", "🎂", "💕", "🌟", "🎈"][i % 8]}
-        </motion.span>
-      ))}
-
-      {/* Cake */}
-      <motion.div
-        initial={{ scale: 0, rotate: -10 }}
-        animate={inView ? { scale: 1, rotate: 0 } : {}}
-        transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
-        className="relative inline-block mb-6"
-      >
-        <div className="text-8xl md:text-9xl">🎂</div>
-        {/* Candle flames */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-2">
-          {cakeCandles.map((c, i) => (
-            <motion.span
-              key={i}
-              animate={{ y: [0, -6, 0], scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 1.2, delay: i * 0.15 }}
-              className="text-lg"
-            >
-              {c}
-            </motion.span>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.6, duration: 0.6 }}
-      >
-        <p className="font-dancing text-xl" style={{ color: "hsl(var(--primary))" }}>
-          🎊 Celebrating Us 🎊
-        </p>
-        <h1
-          className="text-4xl md:text-6xl font-playfair font-bold mt-2"
-          style={{
-            backgroundImage: "var(--gradient-primary)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          Happy Week Anniversary! 🎉
-        </h1>
-        <p className="text-muted-foreground mt-4 max-w-xl mx-auto font-dancing text-lg">
-          One week of knowing you feels like a lifetime of happiness. Here's to every moment we've shared — the laughs, the butterflies, and everything in between 💕
-        </p>
-      </motion.div>
-
-      {/* Knife cutting animation */}
-      <motion.div
-        initial={{ opacity: 0, rotate: -45, x: 80 }}
-        animate={inView ? { opacity: 1, rotate: 0, x: 0 } : {}}
-        transition={{ delay: 1, duration: 0.8, type: "spring" }}
-        className="mt-6 text-5xl"
-      >
-        🔪🍰
-      </motion.div>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ delay: 1.5 }}
-        className="font-dancing text-lg mt-2"
-        style={{ color: "hsl(var(--primary))" }}
-      >
-        Cutting our first cake together... virtually! 🥂
-      </motion.p>
-    </motion.div>
-  );
-};
-
-/* ── Moment Card ── */
-const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-30px" });
-  const meta = categoryMeta[moment.category];
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      whileHover={{ y: -6, scale: 1.03 }}
-      className="glass-card rounded-2xl p-5 cursor-default relative overflow-hidden group"
-    >
-      <div
-        className="absolute top-0 left-0 w-full h-1 rounded-t-2xl"
-        style={{ background: meta.color }}
-      />
-      <div className="absolute -top-4 -right-4 text-6xl opacity-5 group-hover:opacity-10 transition-opacity">
-        {moment.emoji}
-      </div>
-      <div className="flex items-start gap-3">
-        <motion.span
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ repeat: Infinity, duration: 3, delay: index * 0.2 }}
-          className="text-3xl shrink-0 mt-1"
-        >
-          {moment.emoji}
-        </motion.span>
-        <div>
-          <span
-            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
-            style={{ background: `${meta.color}22`, color: meta.color }}
-          >
-            {meta.label}
-          </span>
-          <p className="text-sm text-foreground/80 mt-2 leading-relaxed">{moment.text}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-
-
-  // ───────── 20/02/26 – Early Morning Energy ─────────
+   // ───────── 20/02/26 – Early Morning Energy ─────────
   {
     text: "20/02/26 – 5:56 AM 🌅 First message of the day: “Good morning.” Consistency begins.",
     emoji: "☀️",
@@ -1110,6 +965,149 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
     emoji: "🌤️",
     category: "emotion",
   },
+];
+const CakeCutHero = () => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.8 }}
+      className="relative text-center py-16 px-4 overflow-hidden"
+    >
+      {/* Floating confetti */}
+      {[...Array(18)].map((_, i) => (
+        <motion.span
+          key={i}
+          className="absolute text-xl pointer-events-none select-none"
+          initial={{ opacity: 0, y: -20 }}
+          animate={inView ? {
+            opacity: [0, 1, 0],
+            y: [-(Math.random() * 60), 200 + Math.random() * 300],
+            x: [0, (Math.random() - 0.5) * 120],
+            rotate: [0, Math.random() * 360],
+          } : {}}
+          transition={{ duration: 3 + Math.random() * 2, delay: i * 0.15, repeat: Infinity, repeatDelay: 4 }}
+          style={{ left: `${5 + Math.random() * 90}%`, top: `${Math.random() * 30}%` }}
+        >
+          {["🎉", "🎊", "✨", "💖", "🎂", "💕", "🌟", "🎈"][i % 8]}
+        </motion.span>
+      ))}
+
+      {/* Cake */}
+      <motion.div
+        initial={{ scale: 0, rotate: -10 }}
+        animate={inView ? { scale: 1, rotate: 0 } : {}}
+        transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+        className="relative inline-block mb-6"
+      >
+        <div className="text-8xl md:text-9xl">🎂</div>
+        {/* Candle flames */}
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-2">
+          {cakeCandles.map((c, i) => (
+            <motion.span
+              key={i}
+              animate={{ y: [0, -6, 0], scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 1.2, delay: i * 0.15 }}
+              className="text-lg"
+            >
+              {c}
+            </motion.span>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        <p className="font-dancing text-xl" style={{ color: "hsl(var(--primary))" }}>
+          🎊 Celebrating Us 🎊
+        </p>
+        <h1
+          className="text-4xl md:text-6xl font-playfair font-bold mt-2"
+          style={{
+            backgroundImage: "var(--gradient-primary)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Happy Week Anniversary! 🎉
+        </h1>
+        <p className="text-muted-foreground mt-4 max-w-xl mx-auto font-dancing text-lg">
+          One week of knowing you feels like a lifetime of happiness. Here's to every moment we've shared — the laughs, the butterflies, and everything in between 💕
+        </p>
+      </motion.div>
+
+      {/* Knife cutting animation */}
+      <motion.div
+        initial={{ opacity: 0, rotate: -45, x: 80 }}
+        animate={inView ? { opacity: 1, rotate: 0, x: 0 } : {}}
+        transition={{ delay: 1, duration: 0.8, type: "spring" }}
+        className="mt-6 text-5xl"
+      >
+        🔪🍰
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 1.5 }}
+        className="font-dancing text-lg mt-2"
+        style={{ color: "hsl(var(--primary))" }}
+      >
+        Cutting our first cake together... virtually! 🥂
+      </motion.p>
+    </motion.div>
+  );
+};
+
+/* ── Moment Card ── */
+const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-30px" });
+  const meta = categoryMeta[moment.category];
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      whileHover={{ y: -6, scale: 1.03 }}
+      className="glass-card rounded-2xl p-5 cursor-default relative overflow-hidden group"
+    >
+      <div
+        className="absolute top-0 left-0 w-full h-1 rounded-t-2xl"
+        style={{ background: meta.color }}
+      />
+      <div className="absolute -top-4 -right-4 text-6xl opacity-5 group-hover:opacity-10 transition-opacity">
+        {moment.emoji}
+      </div>
+      <div className="flex items-start gap-3">
+        <motion.span
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 3, delay: index * 0.2 }}
+          className="text-3xl shrink-0 mt-1"
+        >
+          {moment.emoji}
+        </motion.span>
+        <div>
+          <span
+            className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+            style={{ background: `${meta.color}22`, color: meta.color }}
+          >
+            {meta.label}
+          </span>
+          <p className="text-sm text-foreground/80 mt-2 leading-relaxed">{moment.text}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
 
 ];
 /* ── Main Page ── */
