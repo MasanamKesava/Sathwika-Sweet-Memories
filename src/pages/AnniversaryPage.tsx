@@ -318,8 +318,7 @@ const MomentCard = ({ moment, index }: { moment: Moment; index: number }) => {
       </div>
     </motion.div>
   );
-};
-const moments_20_02_26: Moment[] = [
+
 
   // ───────── 20/02/26 – Early Morning Energy ─────────
   {
