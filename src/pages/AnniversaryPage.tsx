@@ -23,7 +23,7 @@ const categoryMeta: Record<Category, { label: string; emoji: string; color: stri
   game:     { label: "Games 🎮",    emoji: "🎮", color: "hsl(150, 50%, 60%)" },
 };
 
-const moments: Moment[] = [
+const allMoments: Moment[] = [
   // ───────── 19/02/26 ─ First Contact ─────────
   {
     text: "19/02/26 – 3:12 PM 💬 First message: “Hi… Sathwika.” The beginning of everything.",
@@ -473,10 +473,6 @@ const moments_20_02_26: Moment[] = [
     emoji: "💤",
     category: "romantic",
   },
-];
-
-
-const moments_21_02_26: Moment[] = [
 
   // ───────── 21/02/26 – Early Morning Creativity ─────────
   {
@@ -603,9 +599,7 @@ const moments_21_02_26: Moment[] = [
     emoji: "🌙",
     category: "emotion",
   },
-];
 
-const moments_22_02_26: Moment[] = [
 
   // ───────── Morning Routine Energy ─────────
   {
@@ -729,9 +723,7 @@ const moments_22_02_26: Moment[] = [
     emoji: "💫",
     category: "game",
   },
-];
 
-const moments_23_02_26: Moment[] = [
 
   // ───────── Morning Care Tone ─────────
   {
@@ -853,9 +845,7 @@ const moments_23_02_26: Moment[] = [
     emoji: "🌌",
     category: "emotion",
   },
-];
 
-const moments_24_02_26: Moment[] = [
 
   // ───────── Morning Affection ─────────
   {
@@ -944,9 +934,7 @@ const moments_24_02_26: Moment[] = [
     category: "romantic",
   },
 
-];
 
-const moments_25_02_26: Moment[] = [
 
   // ───────── Financial Offer Escalation ─────────
   {
@@ -1020,9 +1008,6 @@ const moments_25_02_26: Moment[] = [
     category: "emotion",
   },
 
-];
-
-const extendedMoments_26_02_26: Moment[] = [
 
   // ───────── Emotional Residue from Past ─────────
   {
@@ -1106,7 +1091,7 @@ const extendedMoments_26_02_26: Moment[] = [
     category: "emotion",
   },
 
-];const moments_27_02_26: Moment[] = [
+
 
   // ───────── Post-Conflict Repair Initiation ─────────
   {
